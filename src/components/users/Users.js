@@ -6,7 +6,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-balham.css'
 import {AgGridReact} from 'ag-grid-react'
 import {Col, Row} from 'react-bootstrap'
-import DeleteCellRenderer from '../renderers/DeleteCellRenderer'
 import SparrowDialog from '../common/SparrowDialog'
 
 class Users extends Component {
