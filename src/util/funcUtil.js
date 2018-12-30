@@ -1,5 +1,5 @@
 import {STATUS_FAILED, STATUS_SUCCESS} from '../constants';
-import {reduce, set} from 'lodash'
+import {reduce, set, values} from 'lodash'
 
 export function isSuccess(response) {
     return response && response.status &&
@@ -31,18 +31,11 @@ export function createActionName (type) {
     return name
 }
 
-export function createActions (types = []) {
-
-    types = reduce(Object.keys(types), (result, value, key) => {
-        result.push(value)
-        return result
-    }, [])
-
-    const actions = reduce(types, (result, type, key) => {
+export function createActions (types = {}) {
+    const actions = reduce(values(types), (result, type, key) => {
         const funcName = createActionName(type)
         set(result, funcName, payload => ({type, payload}))
         return result
     }, {})
-
     return actions
 }
