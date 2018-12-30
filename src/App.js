@@ -10,6 +10,13 @@ import Home from "./components/home/Home";
 import PageNotFound from "./components/common/PageNotFound";
 import Login from "./components/login/Login";
 import NavBar from "./components/common/NavBar";
+import Users from "./components/users/Users";
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faIgloo, faTimes } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faIgloo)
+library.add(faTimes)
 
 
 class App extends Component {
@@ -20,6 +27,7 @@ class App extends Component {
                     <NavBar/>
                     <Switch>
                         <Route path="/" component={Home} exact />
+                        <Route path="/users" component={Users} exact />
                         <Route path="/login" component={Login}/>
                         <Route path="/feed" component={Feed}/>
                         <Route path="/profile" component={Profile}/>

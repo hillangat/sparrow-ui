@@ -1,0 +1,8 @@
+
+const types = {
+    GET_USERS: 'GET_USERS',
+    GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
+    CONFIRM_DELETE_USER: 'CONFIRM_DELETE_USER'
+}
+
+export default types

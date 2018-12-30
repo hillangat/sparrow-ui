@@ -3,12 +3,10 @@ import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import './Login.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {login, logout, onChange} from '../../reduxSaga/actions/login';
+import loginActions from '../../reduxSaga/actions/login';
+import {getStatusClass} from "../../util/funcUtil";
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     validateForm = () => {
         const {username = '', password = ''} = this.props
@@ -27,7 +25,6 @@ class Login extends Component {
         login({username, password})
     }
 
-
     renderForm = () => {
         const {status, message, logout, username, password} = this.props
         return (
@@ -37,7 +34,7 @@ class Login extends Component {
                         <tbody>
                             <tr>
                                 <td>Status: </td>
-                                <td>{status}</td>
+                                <td className={getStatusClass(status)}>{status}</td>
                             </tr>
                             <tr>
                                 <td>Message: </td>
@@ -108,12 +105,12 @@ export default connect(
             status: state.login.status,
             message: state.login.message,
             username: state.login.username,
-            password: state.login.password,
+            password: state.login.password
         }
     },
     dispatch => bindActionCreators({
-        login,
-        logout,
-        onChange
+        login: loginActions.login,
+        logout: loginActions.logout,
+        onChange: loginActions.onChange
     }, dispatch)
 )(Login)

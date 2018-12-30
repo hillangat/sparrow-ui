@@ -1,33 +1,31 @@
-import {STATUS_NEUTRAL} from "../../constants";
-import {LOGIN_SUCCESS, LOGOUT_SUCCESS, ON_CHANGE} from "../actions/login/types";
+import {STATUS_NEUTRAL, STATUS_SUCCESS} from '../../constants'
+import loginTypes from '../actions/login/types'
+import handleActions from 'redux-actions/es/handleActions'
 
 const defaultState = {
-    username: "",
-    password: "",
+    username: '',
+    password: '',
     status: STATUS_NEUTRAL,
     message: ''
 }
 
-const login = (state = {}, {type = '', payload = {}}) => {
-    console.log('Payload >>> ', payload)
-    const {status = STATUS_NEUTRAL, message = undefined} = payload
-    let newState = defaultState
-    switch (type) {
-        case LOGIN_SUCCESS:
-            newState = {...state, status, message}
-            break;
-        case LOGOUT_SUCCESS:
-            newState = {...state, status, message}
-            break;
-        case ON_CHANGE:
-            const {id, value} = payload
-            newState = {...state, [id]: value}
-            break;
-        default:
-            newState = defaultState;
-            break;
-    }
-    return newState
-}
-
-export default login;
+export default handleActions (
+    {
+        [loginTypes.LOGIN_SUCCESS]: (state, action ) => {
+            const {status = STATUS_NEUTRAL, message = undefined} = action.payload
+            if (status === STATUS_SUCCESS) {
+                window.location.href = '/'
+            }
+            return {...state, status, message}
+        },
+        [loginTypes.LOGOUT_SUCCESS]: (state, action ) => {
+            const {status = STATUS_NEUTRAL, message = undefined} = action.payload
+            return {...state, status, message}
+        },
+        [loginTypes.ON_CHANGE]: (state, action ) => {
+            const {id, value} = action.payload
+            return {...state, [id]: value}
+        }
+    },
+    defaultState
+);

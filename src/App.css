@@ -12,3 +12,14 @@
   text-align: center;
   font-weight: bold;
 }
+
+.statusSuccess {
+  color: green;
+}
+.statusFailed {
+  color: red;
+}
+
+.grid-container {
+  height: 400px;
+}

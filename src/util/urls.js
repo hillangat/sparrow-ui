@@ -11,6 +11,10 @@ export const urls = {
     LOGIN_OUT: {
         method: GET_METHOD,
         url: `${BASE_URL}user/logout`
+    },
+    GET_USERS: {
+        method: GET_METHOD,
+        url: `${BASE_URL}user/0`
     }
 
 }
