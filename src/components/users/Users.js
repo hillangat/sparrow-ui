@@ -34,6 +34,7 @@ class Users extends Component {
 
     renderGrid = () => {
         const {rowData, colDefs, dialogOpened} = this.props
+        console.log('dialogOpened >>> ', dialogOpened)
         return (
             <div>
                 <button onClick={() => this.confirmDeleteUser({dialogOpened: true, userIdToDelete: undefined})}>Open Dialog</button>
